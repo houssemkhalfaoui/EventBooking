@@ -152,7 +152,7 @@ Manages navigation between pages using **Angular Router**.
 ### 1 Clone the repository
 
 
-git clone https://github.com/yourusername/event-booking-app.git
+git clone (https://github.com/houssemkhalfaoui/EventBooking.git)
 
 
 ### 2 Navigate into the project
