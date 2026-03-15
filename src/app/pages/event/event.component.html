@@ -1,0 +1,164 @@
+<section class="schedule-section spad pt-4">
+  <div class="container">
+
+    <div class="row" *ngIf="eventData$ | async as EventData">
+      <div class="col-8">
+        <div class="row">
+          <div class="col-12">
+            <img class="card-img-top" [src]="EventData.imageUrl" alt="Card image cap">
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-lg-6">
+            <div class="section-title">
+              <h2>{{EventData.eventName}}</h2>
+              <p>{{EventData.organizerName}}</p>
+            </div>
+          </div>
+          <div class="col-6 text-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" (click)="openModel()">Book
+              Now</button>
+          </div>
+          <div class="col-6">
+            Start Time: {{EventData.startDate| date : 'dd-MM-yyyy'}}
+          </div>
+          <div class="col-6 text-end">
+            End Time: {{EventData.endDate | date : 'dd-MM-yyyy'}} time
+          </div>
+          <div class="col-12 text-end">
+            <p>{{EventData.location}} </p>
+          </div>
+          <div class="col-12 pt-1">
+            <p>
+              {{EventData.location}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-4">
+        <h3>Events By __</h3>
+        <div class="row">
+          <div class="col-12" *ngFor="let item of events$ | async">
+            <div class="card">
+              <img class="card-img-top" style="height: 100px !important;" [src]="item.imageUrl" alt="Card image cap">
+
+              <div class="card-body">
+                <h5>{{ item.eventName }}</h5>
+
+                <a [routerLink]="['/event', item.eventId]" class="btn btn-primary">
+                  Book
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+          <div class="
+                    
+                    
+                    
+                    
+                    col-12 pt-1">
+            <div class="card">
+              <img class="card-img-top" style="height: 100px !important;"
+                src="https://themewagon.github.io/manup/img/schedule/schedule-1.jpg" alt="Card image cap">
+              <div class="card-body">
+
+                <a href="#" class="btn btn-primary">Book</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<div class="modal" id="myModal" #model>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Book Ticket</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModel()"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <table>
+              <thead>
+                <tr>
+                  <td>
+                    <input type="text" class="form-control" placeholder="Name" name="Name" [(ngModel)]="members.Name">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" placeholder="Age" name="age" [(ngModel)]="members.Age">
+                  </td>
+                  <td>
+                    <select class="form-select" name="IdentityCard" [(ngModel)]="members.IdentityCard">
+                      <option value="">Select Indentity Proof</option>
+                      <option value="Aadhar Card">Aadhar Card</option>
+                      <option value="Pan Card">Pan Card</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" placeholder="Car No" name="carno"
+                      [(ngModel)]="members.CardNo">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" placeholder="Mobile No" name="ContactNo"
+                      [(ngModel)]="members.ContactNo">
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" (click)="AddMember()">Add</button>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let item of bookingOBj.EventBookingMembers">
+                  <td>{{item.Name}}</td>
+                  <td>{{item.Age}}</td>
+                  <td>{{item.IdentityCard}}</td>
+                  <td>{{item.CardNo}}</td>
+                  <td>{{item.ContactNo}}</td>
+
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModel()">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="onBooking()">Book Ticket</button>
+      </div>
+
+    </div>
+  </div>
+</div>
